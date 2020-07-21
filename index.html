@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>Learn AngularJS - Order Form</title>
+
+		<link href="http://fonts.googleapis.com/css?family=Cookie|Open+Sans:400,700" rel="stylesheet" />
+
+		<!-- The main CSS file -->
+		<link href="style.css" rel="stylesheet" />
+
+		<!--[if lt IE 9]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<!-- Declare a new AngularJS app and associate the controller -->
+	<body ng-app="app" ng-controller="ProductController">
+
+		<form>
+
+			<h1>Services</h1>
+
+			<ul>
+				<!-- Loop through the services array, assign a click handler, and set or
+					remove the "active" css class if needed -->
+				<li ng-repeat="product in products" ng-click="toggleActive(product)" ng-class="{active:service.active}">
+					<!-- Notice the use of the currency filter, it will format the price -->
+					{{product.name}} <span>{{product.price | currency}}</span>
+					<button class="addbutton" ng-click="addToCart($index)">CART</button>
+				</li>
+				
+			</ul>
+          
+		
+		  <div class="cartlist">
+			<h2>CART</h2>
+			<ul>
+				<li ng-repeat="item in cart">{{item.name}}- {{item.price}}
+					<button ng-click="remove($index)">X</button>
+				</li>
+			</ul>
+			<h2>Total : {{total()}} </h2>
+			</div>
+		</form>
+
+		<!-- Include AngularJS from Google's CDN -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script src="script.js"></script>
+		<script src="controller.js"></script>
+	</body>
+</html>
